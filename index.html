@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///Users/administrator/Downloads/vuelacasa.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VuelaCasa — Vuela a Casa Por Menos</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --black:   #080808;
+    --obsidian:#0f0f0f;
+    --charcoal:#1a1a1a;
+    --gold:    #c9a84c;
+    --gold-lt: #e8c97a;
+    --gold-dk: #8b6914;
+    --red:     #e63946;
+    --cream:   #f5f0e8;
+    --white:   #ffffff;
+    --muted:   rgba(255,255,255,0.38);
+    --border:  rgba(201,168,76,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+  }
+
+  /* GRAIN OVERLAY */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-plane {
+    font-size: 20px;
+    animation: wiggle 3s ease-in-out infinite;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-5deg) translateX(0); }
+    50% { transform: rotate(5deg) translateX(4px); }
+  }
+
+  .logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--black) !important;
+    padding: 11px 24px !important;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-lt) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 160px 60px 100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: reveal 1s ease 0.3s forwards;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 36px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5.5vw, 90px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: reveal 1s ease 0.5s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub-es {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: reveal 1s ease 0.6s forwards;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+    max-width: 420px;
+    font-weight: 300;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: reveal 1s ease 0.7s forwards;
+  }
+
+  .hero-desc strong { color: var(--cream); font-weight: 500; }
+
+  /* SIGNUP FORM */
+  .hero-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 420px;
+    opacity: 0;
+    animation: reveal 1s ease 0.9s forwards;
+  }
+
+  .form-row {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .form-row:focus-within { border-color: var(--gold); }
+
+  .hero-form input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: none;
+    color: var(--white);
+    padding: 18px 20px;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+  }
+
+  .hero-form input::placeholder {
+    color: rgba(255,255,255,0.22);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .form-btn {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 18px 28px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    cursor: none;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+
+  .form-btn:hover { background: var(--gold-lt); }
+
+  .hero-note {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+  }
+
+  .success-msg {
+    display: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 12px 0;
+  }
+
+  /* HERO RIGHT */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--black) 0%, transparent 50%);
+    z-index: 2;
+  }
+
+  .hero-img-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(230,57,70,0.06) 0%, transparent 50%),
+      linear-gradient(180deg, #100c02 0%, #080808 100%);
+  }
+
+  /* GLOBE ANIMATION */
+  .flight-visual {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .globe-ring {
+    width: 420px; height: 420px;
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 50%;
+    position: absolute;
+    animation: spin 40s linear infinite;
+  }
+
+  .globe-ring:nth-child(2) {
+    width: 300px; height: 300px;
+    border-color: rgba(201,168,76,0.07);
+    animation-duration: 28s;
+    animation-direction: reverse;
+  }
+
+  .globe-ring:nth-child(3) {
+    width: 180px; height: 180px;
+    border-color: rgba(201,168,76,0.13);
+    animation-duration: 18s;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg) rotateX(70deg); }
+    to { transform: rotate(360deg) rotateX(70deg); }
+  }
+
+  .plane-icon {
+    font-size: 24px;
+    position: absolute;
+    animation: orbit 8s linear infinite;
+    z-index: 4;
+  }
+
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(200px) rotate(90deg); }
+    to { transform: rotate(360deg) translateX(200px) rotate(90deg); }
+  }
+
+  /* FLOATING CARDS */
+  .floating-card {
+    position: absolute;
+    background: rgba(12,10,4,0.92);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 22px;
+    z-index: 5;
+    backdrop-filter: blur(20px);
+  }
+
+  .floating-card:nth-child(5) {
+    top: 24%; right: 8%;
+    animation: float1 6s ease-in-out infinite;
+  }
+
+  .floating-card:nth-child(6) {
+    bottom: 28%; right: 16%;
+    animation: float2 7s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
+  }
+
+  .fc-flag { font-size: 22px; margin-bottom: 6px; }
+  .fc-route {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+
+  .fc-sub {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .fc-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: -1px;
+  }
+
+  .fc-badge {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    overflow: hidden;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--obsidian);
+  }
+
+  .ticker {
+    display: flex;
+    gap: 56px;
+    animation: ticker 38s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .t-flag { font-size: 14px; }
+  .t-price { color: var(--gold); font-weight: 600; }
+  .t-drop { color: rgba(96,212,240,0.85); }
+  .t-sep { color: var(--gold); opacity: 0.3; }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* STATS */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-item {
+    background: var(--black);
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .stat-label-es {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.18);
+    font-style: italic;
+    margin-top: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+  }
+
+  /* SECTION COMMONS */
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 36px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 4.5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-title-es {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 56px;
+  }
+
+  /* HOW IT WORKS */
+  .hiw {
+    padding: 140px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .step {
+    background: var(--black);
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+
+  .step::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-dk), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .step:hover { background: rgba(201,168,76,0.03); }
+  .step:hover::after { transform: scaleX(1); }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 90px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+    margin-bottom: 28px;
+    letter-spacing: -4px;
+  }
+
+  .step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .step h3 span {
+    display: block;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 14px;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* DEALS */
+  .deals-section {
+    padding: 140px 60px;
+    background: var(--obsidian);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .deals-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .deal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .deal-row {
+    background: var(--obsidian);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+    cursor: none;
+  }
+
+  .deal-row:hover { background: rgba(201,168,76,0.04); }
+
+  .dr-flag { font-size: 24px; margin-right: 14px; }
+
+  .dr-left { display: flex; align-items: center; }
+
+  .dr-info {}
+
+  .dr-route {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+
+  .dr-meta {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .dr-right { text-align: right; }
+
+  .dr-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: -1px;
+  }
+
+  .dr-status {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 1px;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .s-low   { color: #60d4f0; border: 1px solid rgba(96,212,240,0.3); }
+  .s-epic  { color: #f0a060; border: 1px solid rgba(240,160,96,0.3); }
+  .s-great { color: #60f0a0; border: 1px solid rgba(96,240,160,0.3); }
+
+  /* PRICING */
+  .pricing {
+    padding: 140px 60px;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .price-card {
+    border: 1px solid var(--border);
+    padding: 72px 72px 56px;
+    position: relative;
+    margin-top: 56px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+  }
+
+  .price-card::before, .price-card::after {
+    content: '';
+    position: absolute;
+    width: 22px; height: 22px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.5;
+  }
+
+  .price-card::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+  .price-card::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+  .card-corner-tr, .card-corner-bl {
+    position: absolute;
+    width: 22px; height: 22px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.5;
+  }
+
+  .card-corner-tr { top: -1px; right: -1px; border-width: 1px 1px 0 0; }
+  .card-corner-bl { bottom: -1px; left: -1px; border-width: 0 0 1px 1px; }
+
+  .price-tag {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 36px;
+  }
+
+  .price-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 110px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--cream);
+    letter-spacing: -5px;
+    margin-bottom: 8px;
+  }
+
+  .price-big sup {
+    font-size: 44px;
+    vertical-align: super;
+    letter-spacing: 0;
+    color: var(--gold);
+  }
+
+  .price-per {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  .features {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 40px;
+    text-align: left;
+    margin-bottom: 48px;
+  }
+
+  .features li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .features li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .cta-area {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .cta-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 18px 24px;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: border-color 0.3s;
+    border-radius: 2px;
+  }
+
+  .cta-input::placeholder {
+    color: rgba(255,255,255,0.2);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .cta-input:focus { border-color: var(--gold); }
+
+  .cta-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 20px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    cursor: none;
+    transition: background 0.3s;
+    border-radius: 2px;
+  }
+
+  .cta-btn:hover { background: var(--gold-lt); }
+
+  .cta-note {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.16);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 56px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  footer p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.14);
+  }
+
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 110px 24px 60px; }
+    .hero-right { height: 280px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat-item { padding: 28px 20px; }
+    .hiw { padding: 80px 24px; }
+    .steps { grid-template-columns: 1fr; }
+    .deals-section { padding: 80px 24px; }
+    .deals-inner { grid-template-columns: 1fr; gap: 48px; }
+    .pricing { padding: 80px 24px; }
+    .price-card { padding: 40px 28px; }
+    .price-big { font-size: 76px; }
+    .features { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor" style="left: 894px; top: 525px; transform: translate(-50%, -50%) scale(1);"></div>
+<div class="cursor-ring" id="cursorRing" style="left: 904.352px; top: 529.098px; transform: translate(-50%, -50%) scale(1);"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-plane">✈️</span>
+    Vuela<span>Casa</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="file:///Users/administrator/Downloads/vuelacasa.html#how">Cómo Funciona</a></li>
+    <li><a href="file:///Users/administrator/Downloads/vuelacasa.html#deals">Deals de Hoy</a></li>
+    <li><a href="file:///Users/administrator/Downloads/vuelacasa.html#pricing" class="nav-cta">Empieza Gratis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">NYC · JFK · EWR · Latin America &amp; Beyond</div>
+    <h1>Vuela a<br><em>casa</em><br>por menos.</h1>
+    <p class="hero-sub-es">Fly home for less.</p>
+    <p class="hero-desc">
+      VuelaCasa rastrea cientos de rutas desde Nueva York <strong>todos los días</strong> y te avisa cuando los precios caen — para que reserves al precio más bajo, siempre.<br><br>
+      <span style="color:rgba(255,255,255,0.35);font-size:13px">We track hundreds of NYC routes daily and alert you the moment fares drop.</span>
+    </p>
+    <div class="hero-form">
+      <div class="form-row">
+        <input type="email" id="hero-email" placeholder="Tu email / Your email">
+        <button class="form-btn" onclick="handleSignup(&#39;hero-email&#39;,&#39;hero-success&#39;)">¡Vuela! →</button>
+      </div>
+      <p class="hero-note">7 días gratis · No requiere tarjeta · Cancel anytime</p>
+      <p class="success-msg" id="hero-success">✦ &nbsp; ¡Listo! Te avisamos cuando caigan los precios.</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-img-bg"></div>
+    <div class="flight-visual">
+      <div class="globe-ring"></div>
+      <div class="globe-ring"></div>
+      <div class="globe-ring"></div>
+      <div class="plane-icon">✈</div>
+    </div>
+    <div class="floating-card">
+      <div class="fc-flag">🇸🇻</div>
+      <div class="fc-route">JFK → San Salvador</div>
+      <div class="fc-sub">Avianca · Nonstop · Mayo 2026</div>
+      <div class="fc-price">$280</div>
+      <div class="fc-badge">¡Precio Épico!</div>
+    </div>
+    <div class="floating-card">
+      <div class="fc-flag">🇭🇳</div>
+      <div class="fc-route">JFK → San Pedro Sula</div>
+      <div class="fc-sub">JetBlue · Mayo 2026</div>
+      <div class="fc-price">$336</div>
+      <div class="fc-badge">Precio Bajo</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="t-flag">🇭🇳</span> JFK → San Pedro Sula <span class="t-price">$336</span> <span class="t-drop">↓ Bajo</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇸🇻</span> JFK → San Salvador <span class="t-price">$280</span> <span class="t-drop">↓ Épico</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇩🇴</span> JFK → Santo Domingo <span class="t-price">$310</span> <span class="t-drop">↓ Gran Deal</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇨🇴</span> JFK → Bogotá <span class="t-price">$389</span> <span class="t-drop">↓ Bajo</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇲🇽</span> JFK → Ciudad de México <span class="t-price">$298</span> <span class="t-drop">↓ Gran Deal</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇵🇷</span> JFK → San Juan <span class="t-price">$189</span> <span class="t-drop">↓ Épico</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇬🇹</span> JFK → Guatemala City <span class="t-price">$312</span> <span class="t-drop">↓ Bajo</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="t-flag">🇭🇳</span> JFK → San Pedro Sula <span class="t-price">$336</span> <span class="t-drop">↓ Bajo</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇸🇻</span> JFK → San Salvador <span class="t-price">$280</span> <span class="t-drop">↓ Épico</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇩🇴</span> JFK → Santo Domingo <span class="t-price">$310</span> <span class="t-drop">↓ Gran Deal</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇨🇴</span> JFK → Bogotá <span class="t-price">$389</span> <span class="t-drop">↓ Bajo</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇲🇽</span> JFK → Ciudad de México <span class="t-price">$298</span> <span class="t-drop">↓ Gran Deal</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇵🇷</span> JFK → San Juan <span class="t-price">$189</span> <span class="t-drop">↓ Épico</span></div>
+    <div class="ticker-item t-sep">✦</div>
+    <div class="ticker-item"><span class="t-flag">🇬🇹</span> JFK → Guatemala City <span class="t-price">$312</span> <span class="t-drop">↓ Bajo</span></div>
+    <div class="ticker-item t-sep">✦</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">80+</div>
+    <div class="stat-label">Routes Tracked</div>
+    <div class="stat-label-es">Rutas monitoreadas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Daily</div>
+    <div class="stat-label">Price Scans</div>
+    <div class="stat-label-es">Escaneos diarios</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">$25</div>
+    <div class="stat-label">Per Month</div>
+    <div class="stat-label-es">Al mes</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Savings Potential</div>
+    <div class="stat-label-es">Ahorro potencial</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="hiw" id="how">
+  <div class="section-eyebrow">Cómo funciona · How it works</div>
+  <h2 class="section-title">Simple como<br><em>llamar a mamá.</em></h2>
+  <p class="section-title-es">As simple as calling mom.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">I</div>
+      <h3>Monitoreamos
+        <span>We monitor</span>
+      </h3>
+      <p>Nuestro sistema escanea cientos de rutas desde JFK y EWR cada mañana — comparando precios actuales con meses de datos históricos para encontrar verdaderas oportunidades.<br><br><span style="color:rgba(255,255,255,0.25);font-size:12px">Our engine scans hundreds of NYC routes every morning against months of historical data.</span></p>
+    </div>
+    <div class="step">
+      <div class="step-num">II</div>
+      <h3>Te avisamos
+        <span>We alert you</span>
+      </h3>
+      <p>Cuando un precio baja 5% o más, o toca su mínimo histórico, te enviamos un email de inmediato con la ruta, el precio, y un link directo para reservar.<br><br><span style="color:rgba(255,255,255,0.25);font-size:12px">When a price drops meaningfully, you get an instant email with a direct booking link.</span></p>
+    </div>
+    <div class="step">
+      <div class="step-num">III</div>
+      <h3>Tú reservas
+        <span>You book &amp; save</span>
+      </h3>
+      <p>Un click abre Google Flights con tu ruta y fechas pre-seleccionadas. Escoge la semana más barata y reserva — ahorrando hasta $300 por tiquete.<br><br><span style="color:rgba(255,255,255,0.25);font-size:12px">One click, dates pre-filled. Book and save up to $300 per ticket.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEALS -->
+<section class="deals-section" id="deals">
+  <div class="deals-inner">
+    <div>
+      <div class="section-eyebrow">Deals de hoy · Live deals</div>
+      <h2 class="section-title" style="margin-bottom:8px">Precios reales.<br><em>Ahora mismo.</em></h2>
+      <p style="font-family:&#39;Cormorant Garamond&#39;,serif;font-style:italic;font-size:18px;color:var(--muted);margin-bottom:24px">Real prices. Right now.</p>
+      <p style="font-size:14px;color:var(--muted);line-height:1.9;font-weight:300;max-width:320px">Cada precio que ves viene de datos reales de vuelos — rastreados diariamente, verificados contra el historial.</p>
+    </div>
+    <div class="deal-list">
+      <div class="deal-row">
+        <div class="dr-left">
+          <span class="dr-flag">🇭🇳</span>
+          <div class="dr-info">
+            <div class="dr-route">JFK → San Pedro Sula</div>
+            <div class="dr-meta">7-day Return · JetBlue Nonstop · Mayo 2026</div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-price">$336</div>
+          <span class="dr-status s-low">Precio Bajo</span>
+        </div>
+      </div>
+      <div class="deal-row">
+        <div class="dr-left">
+          <span class="dr-flag">🇸🇻</span>
+          <div class="dr-info">
+            <div class="dr-route">JFK → San Salvador</div>
+            <div class="dr-meta">7-day Return · Avianca Nonstop · Mayo 2026</div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-price">$280</div>
+          <span class="dr-status s-epic">¡Épico!</span>
+        </div>
+      </div>
+      <div class="deal-row">
+        <div class="dr-left">
+          <span class="dr-flag">🇩🇴</span>
+          <div class="dr-info">
+            <div class="dr-route">JFK → Santo Domingo</div>
+            <div class="dr-meta">7-day Return · JetBlue · Mayo 2026</div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-price">$310</div>
+          <span class="dr-status s-great">Gran Deal</span>
+        </div>
+      </div>
+      <div class="deal-row">
+        <div class="dr-left">
+          <span class="dr-flag">🇨🇴</span>
+          <div class="dr-info">
+            <div class="dr-route">JFK → Bogotá</div>
+            <div class="dr-meta">7-day Return · Avianca · Mayo 2026</div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-price">$389</div>
+          <span class="dr-status s-low">Precio Bajo</span>
+        </div>
+      </div>
+      <div class="deal-row">
+        <div class="dr-left">
+          <span class="dr-flag">🇲🇽</span>
+          <div class="dr-info">
+            <div class="dr-route">JFK → Ciudad de México</div>
+            <div class="dr-meta">7-day Return · Aeromexico · Mayo 2026</div>
+          </div>
+        </div>
+        <div class="dr-right">
+          <div class="dr-price">$298</div>
+          <span class="dr-status s-great">Gran Deal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-eyebrow">Membresía · Membership</div>
+  <h2 class="section-title">Un plan.<br><em>Todos los deals.</em></h2>
+  <p style="font-family:&#39;Cormorant Garamond&#39;,serif;font-style:italic;font-size:20px;color:var(--muted)">One plan. Every deal.</p>
+
+  <div class="price-card">
+    <div class="card-corner-tr"></div>
+    <div class="card-corner-bl"></div>
+    <p class="price-tag">VuelaCasa Pro</p>
+    <div class="price-big"><sup>$</sup>25</div>
+    <p class="price-per">por mes · per month · cancel anytime</p>
+    <ul class="features">
+      <li>Rutas diarias JFK + EWR / Daily route tracking</li>
+      <li>Alertas instantáneas / Instant price drop alerts</li>
+      <li>Detección de tarifas error / Error fare detection</li>
+      <li>Gráficas de historial / Price history charts</li>
+      <li>Mejor día para volar / Best day to fly insights</li>
+      <li>80+ destinos / 80+ Explore destinations</li>
+      <li>Links directos para reservar / Book Now links</li>
+      <li>Soporte bilingüe / Bilingual support</li>
+    </ul>
+    <div class="cta-area">
+      <input type="email" class="cta-input" id="pricing-email" placeholder="Tu email / Your email">
+      <button class="cta-btn" onclick="handleSignup(&#39;pricing-email&#39;,&#39;pricing-success&#39;)">Empieza 7 Días Gratis · Start Free Trial</button>
+      <p class="cta-note">No requiere tarjeta · No credit card required</p>
+      <p class="success-msg" id="pricing-success" style="text-align:center">✦ &nbsp; ¡Listo! Te contactamos pronto. We'll be in touch soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">✈️ &nbsp;Vuela<span>Casa</span></div>
+    <div class="footer-tagline">Vuela a casa por menos · Fly home for less</div>
+  </div>
+  <p>© 2026 VuelaCasa · NYC · hola@vuelacasa.com</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('button, a, input').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.transform = 'translate(-50%,-50%) scale(1)';
+    });
+  });
+
+  // Signup
+  function handleSignup(inputId, successId) {
+    const input = document.getElementById(inputId);
+    if (!input.value || !input.value.includes('@')) {
+      input.style.borderColor = 'rgba(230,57,70,0.5)';
+      return;
+    }
+    input.style.display = 'none';
+    const btn = input.nextElementSibling;
+    if (btn && btn.tagName === 'BUTTON') btn.style.display = 'none';
+    document.getElementById(successId).style.display = 'block';
+    console.log('Signup:', input.value);
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+
+</body></html>
