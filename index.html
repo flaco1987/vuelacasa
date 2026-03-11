@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0052)file:///Users/administrator/Downloads/vuelacasa.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VuelaCasa — Vuela a Casa Por Menos</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
   :root {
     --black:   #080808;
@@ -71,7 +71,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 500;
-    padding: 28px 60px; margin-top: 36px;
+    padding: 28px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -363,15 +363,13 @@
   }
 
   .floating-card:nth-child(5) {
-    top: 15%; right: 5%;
+    top: 24%; right: 8%;
     animation: float1 6s ease-in-out infinite;
-    max-width: 220px;
   }
 
   .floating-card:nth-child(6) {
-    bottom: 15%; right: 5%;
+    bottom: 28%; right: 16%;
     animation: float2 7s ease-in-out infinite;
-    max-width: 220px;
   }
 
   @keyframes float1 {
@@ -885,32 +883,81 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* MOBILE */
+  /* TABLET */
   @media (max-width: 900px) {
     nav { padding: 20px 24px; }
     .nav-links { display: none; }
+
+    /* HERO */
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-left { padding: 110px 24px 60px; }
     .hero-right { height: 280px; }
+
+    /* HERO FLOATING CARDS — hide on small screens, they overflow */
+    .floating-card { display: none; }
+
+    /* FORM — stack input + button vertically */
+    .form-row { flex-direction: column; }
+    .form-btn { width: 100%; padding: 18px; text-align: center; }
+
+    /* STATS */
     .stats-bar { grid-template-columns: 1fr 1fr; }
     .stat-item { padding: 28px 20px; }
+    .stat-num { font-size: 38px; }
+
+    /* HOW IT WORKS */
     .hiw { padding: 80px 24px; }
     .steps { grid-template-columns: 1fr; }
+    .step { padding: 40px 28px; }
+
+    /* DEALS */
     .deals-section { padding: 80px 24px; }
     .deals-inner { grid-template-columns: 1fr; gap: 48px; }
+    .deal-row { flex-wrap: wrap; gap: 12px; }
+    .dr-left { flex: 1 1 auto; min-width: 0; }
+    .dr-route { font-size: 16px; }
+    .dr-meta { font-size: 9px; white-space: normal; }
+    .dr-right { text-align: right; flex-shrink: 0; }
+
+    /* PRICING */
     .pricing { padding: 80px 24px; }
-    .price-card { padding: 40px 28px; }
+    .price-card { padding: 40px 24px 36px; }
     .price-big { font-size: 76px; }
-    .features { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; gap: 14px; }
+    .cta-btn { letter-spacing: 2px; font-size: 10px; padding: 18px 12px; }
+
+    /* FOOTER */
     footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
+
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
+  }
+
+  /* SMALL MOBILE */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 44px; }
+    .hero-sub-es { font-size: 18px; }
+    .hero-desc { font-size: 14px; }
+    .section-title { font-size: 36px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat-num { font-size: 32px; }
+    .stat-item { padding: 22px 14px; }
+    .price-big { font-size: 64px; }
+    .price-card { padding: 32px 20px 28px; }
+    .dr-flag { font-size: 20px; margin-right: 10px; }
+    .dr-route { font-size: 15px; }
+    .dr-price { font-size: 24px; }
+    .deal-row { padding: 18px 16px; }
+    .hiw { padding: 60px 20px; }
+    .deals-section { padding: 60px 20px; }
+    .pricing { padding: 60px 20px; }
+    .step { padding: 32px 20px; }
+    .step-num { font-size: 64px; }
   }
 </style>
 </head>
 <body>
 
-<div style="background:var(--gold);color:var(--black);text-align:center;padding:10px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;position:fixed;top:0;left:0;right:0;z-index:9999">🚧 Beta · Launching May 1, 2026 · Join the Waitlist Below</div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -923,14 +970,14 @@
   <ul class="nav-links">
     <li><a href="#how">Cómo Funciona</a></li>
     <li><a href="#deals">Deals de Hoy</a></li>
-    <li><a href="#pricing" class="nav-cta">Únete al Waitlist</a></li>
+    <li><a href="#pricing" class="nav-cta">Empieza Gratis</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">NYC · JFK · EWR · Latin America & Beyond</div>
+    <div class="hero-eyebrow">NYC · JFK · EWR · Latin America &amp; Beyond</div>
     <h1>Vuela a<br><em>casa</em><br>por menos.</h1>
     <p class="hero-sub-es">Fly home for less.</p>
     <p class="hero-desc">
@@ -939,10 +986,10 @@
     </p>
     <div class="hero-form">
       <div class="form-row">
-        <input type="email" id="hero-email" placeholder="Tu email / Your email" />
-        <button class="form-btn" onclick="handleSignup('hero-email','hero-success')">Únete al Waitlist →</button>
+        <input type="email" id="hero-email" placeholder="Tu email / Your email">
+        <button class="form-btn" onclick="handleSignup(&#39;hero-email&#39;,&#39;hero-success&#39;)">¡Vuela! →</button>
       </div>
-      <p class="hero-note">Gratis · Sé el primero en saber · Be the first to know</p>
+      <p class="hero-note">7 días gratis · No requiere tarjeta · Cancel anytime</p>
       <p class="success-msg" id="hero-success">✦ &nbsp; ¡Listo! Te avisamos cuando caigan los precios.</p>
     </div>
   </div>
@@ -1054,7 +1101,7 @@
     <div class="step">
       <div class="step-num">III</div>
       <h3>Tú reservas
-        <span>You book & save</span>
+        <span>You book &amp; save</span>
       </h3>
       <p>Un click abre Google Flights con tu ruta y fechas pre-seleccionadas. Escoge la semana más barata y reserva — ahorrando hasta $300 por tiquete.<br><br><span style="color:rgba(255,255,255,0.25);font-size:12px">One click, dates pre-filled. Book and save up to $300 per ticket.</span></p>
     </div>
@@ -1067,7 +1114,7 @@
     <div>
       <div class="section-eyebrow">Deals de hoy · Live deals</div>
       <h2 class="section-title" style="margin-bottom:8px">Precios reales.<br><em>Ahora mismo.</em></h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted);margin-bottom:24px">Real prices. Right now.</p>
+      <p style="font-family:&#39;Cormorant Garamond&#39;,serif;font-style:italic;font-size:18px;color:var(--muted);margin-bottom:24px">Real prices. Right now.</p>
       <p style="font-size:14px;color:var(--muted);line-height:1.9;font-weight:300;max-width:320px">Cada precio que ves viene de datos reales de vuelos — rastreados diariamente, verificados contra el historial.</p>
     </div>
     <div class="deal-list">
@@ -1144,14 +1191,14 @@
 <section class="pricing" id="pricing">
   <div class="section-eyebrow">Membresía · Membership</div>
   <h2 class="section-title">Un plan.<br><em>Todos los deals.</em></h2>
-  <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--muted)">One plan. Every deal.</p>
+  <p style="font-family:&#39;Cormorant Garamond&#39;,serif;font-style:italic;font-size:20px;color:var(--muted)">One plan. Every deal.</p>
 
   <div class="price-card">
     <div class="card-corner-tr"></div>
     <div class="card-corner-bl"></div>
     <p class="price-tag">VuelaCasa Pro</p>
     <div class="price-big"><sup>$</sup>25</div>
-    <p class="price-per">por mes · per month · Lanzamiento May 1 🚀</p>
+    <p class="price-per">por mes · per month · cancel anytime</p>
     <ul class="features">
       <li>Rutas diarias JFK + EWR / Daily route tracking</li>
       <li>Alertas instantáneas / Instant price drop alerts</li>
@@ -1163,9 +1210,9 @@
       <li>Soporte bilingüe / Bilingual support</li>
     </ul>
     <div class="cta-area">
-      <input type="email" class="cta-input" id="pricing-email" placeholder="Tu email / Your email" />
-      <button class="cta-btn" onclick="handleSignup('pricing-email','pricing-success')">Únete al Waitlist · Join Waitlist</button>
-      <p class="cta-note">🚧 En beta · Lanzamiento Mayo 1 · Launching May 1</p>
+      <input type="email" class="cta-input" id="pricing-email" placeholder="Tu email / Your email">
+      <button class="cta-btn" onclick="handleSignup(&#39;pricing-email&#39;,&#39;pricing-success&#39;)">Empieza 7 Días Gratis · Start Free Trial</button>
+      <p class="cta-note">No requiere tarjeta · No credit card required</p>
       <p class="success-msg" id="pricing-success" style="text-align:center">✦ &nbsp; ¡Listo! Te contactamos pronto. We'll be in touch soon.</p>
     </div>
   </div>
@@ -1177,7 +1224,7 @@
     <div class="footer-logo">✈️ &nbsp;Vuela<span>Casa</span></div>
     <div class="footer-tagline">Vuela a casa por menos · Fly home for less</div>
   </div>
-  <p>© 2026 VuelaCasa · NYC · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3dbdcdfd2f3c5c6d6dfd2d0d2c0d29dd0dcde">[email&#160;protected]</a></p>
+  <p>© 2026 VuelaCasa · NYC · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f5750535e7f494a5a535e5c5e4c5e115c5052">[email&#160;protected]</a></p>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -1227,13 +1274,4 @@
   }
 
   // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) t.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-</script>
-</body>
-</html>
+  document.querySelectorAll('a[href^="#"]').forEach(a 
