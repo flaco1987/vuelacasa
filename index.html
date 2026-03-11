@@ -581,10 +581,7 @@
   const FORMSPREE_ID = 'xgonknzo';
 
   function submitEmail(email, source){
-    if(FORMSPREE_ID==='xgonknzo'){
-      console.log('[VuelaCasa Waitlist] Email captured:',email,'| Source:',source);
-      return;
-    }
+    
     fetch('https://formspree.io/f/'+FORMSPREE_ID,{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
