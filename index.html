@@ -71,7 +71,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 500;
-    padding: 28px 60px;
+    padding: 28px 60px; margin-top: 36px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -363,13 +363,15 @@
   }
 
   .floating-card:nth-child(5) {
-    top: 24%; right: 8%;
+    top: 15%; right: 5%;
     animation: float1 6s ease-in-out infinite;
+    max-width: 220px;
   }
 
   .floating-card:nth-child(6) {
-    bottom: 28%; right: 16%;
+    bottom: 15%; right: 5%;
     animation: float2 7s ease-in-out infinite;
+    max-width: 220px;
   }
 
   @keyframes float1 {
@@ -908,6 +910,7 @@
 </head>
 <body>
 
+<div style="background:var(--gold);color:var(--black);text-align:center;padding:10px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;position:fixed;top:0;left:0;right:0;z-index:9999">🚧 Beta · Launching May 1, 2026 · Join the Waitlist Below</div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -920,7 +923,7 @@
   <ul class="nav-links">
     <li><a href="#how">Cómo Funciona</a></li>
     <li><a href="#deals">Deals de Hoy</a></li>
-    <li><a href="#pricing" class="nav-cta">Empieza Gratis</a></li>
+    <li><a href="#pricing" class="nav-cta">Únete al Waitlist</a></li>
   </ul>
 </nav>
 
@@ -937,9 +940,9 @@
     <div class="hero-form">
       <div class="form-row">
         <input type="email" id="hero-email" placeholder="Tu email / Your email" />
-        <button class="form-btn" onclick="handleSignup('hero-email','hero-success')">¡Vuela! →</button>
+        <button class="form-btn" onclick="handleSignup('hero-email','hero-success')">Únete al Waitlist →</button>
       </div>
-      <p class="hero-note">7 días gratis · No requiere tarjeta · Cancel anytime</p>
+      <p class="hero-note">Gratis · Sé el primero en saber · Be the first to know</p>
       <p class="success-msg" id="hero-success">✦ &nbsp; ¡Listo! Te avisamos cuando caigan los precios.</p>
     </div>
   </div>
@@ -1148,7 +1151,7 @@
     <div class="card-corner-bl"></div>
     <p class="price-tag">VuelaCasa Pro</p>
     <div class="price-big"><sup>$</sup>25</div>
-    <p class="price-per">por mes · per month · cancel anytime</p>
+    <p class="price-per">por mes · per month · Lanzamiento May 1 🚀</p>
     <ul class="features">
       <li>Rutas diarias JFK + EWR / Daily route tracking</li>
       <li>Alertas instantáneas / Instant price drop alerts</li>
@@ -1161,8 +1164,8 @@
     </ul>
     <div class="cta-area">
       <input type="email" class="cta-input" id="pricing-email" placeholder="Tu email / Your email" />
-      <button class="cta-btn" onclick="handleSignup('pricing-email','pricing-success')">Empieza 7 Días Gratis · Start Free Trial</button>
-      <p class="cta-note">No requiere tarjeta · No credit card required</p>
+      <button class="cta-btn" onclick="handleSignup('pricing-email','pricing-success')">Únete al Waitlist · Join Waitlist</button>
+      <p class="cta-note">🚧 En beta · Lanzamiento Mayo 1 · Launching May 1</p>
       <p class="success-msg" id="pricing-success" style="text-align:center">✦ &nbsp; ¡Listo! Te contactamos pronto. We'll be in touch soon.</p>
     </div>
   </div>
@@ -1174,10 +1177,10 @@
     <div class="footer-logo">✈️ &nbsp;Vuela<span>Casa</span></div>
     <div class="footer-tagline">Vuela a casa por menos · Fly home for less</div>
   </div>
-  <p>© 2026 VuelaCasa · NYC · hola@vuelacasa.com</p>
+  <p>© 2026 VuelaCasa · NYC · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3dbdcdfd2f3c5c6d6dfd2d0d2c0d29dd0dcde">[email&#160;protected]</a></p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
