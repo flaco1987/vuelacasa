@@ -583,25 +583,13 @@
   }
 
   
-  // ── BREVO API
-  const BREVO_KEY = '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';
-  const BREVO_LIST_ID = 3;
-
+  // ── BREVO API (via Vercel serverless function)
   function submitEmail(email, source){
-    fetch('https://api.brevo.com/v3/contacts',{
+    fetch('/api/subscribe',{
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Accept':'application/json',
-        'api-key': BREVO_KEY
-      },
-      body:JSON.stringify({
-        email: email,
-        listIds: [BREVO_LIST_ID],
-        attributes: { SOURCE: source },
-        updateEnabled: true
-      })
-    }).catch(err=>console.error('Brevo error:',err));
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ email, source })
+    }).catch(err=>console.error('Subscribe error:',err));
   }
 
   // ── COUNTDOWN TO MAY 1 2026
