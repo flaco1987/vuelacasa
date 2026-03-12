@@ -80,7 +80,7 @@
   .success-msg { display:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:12px 0; }
 
   /* HERO RIGHT */
-  .hero-right { position:relative;overflow:visible; min-height:100vh;  }
+  .hero-right { position:relative;overflow:visible;min-height:100vh; }
   .hero-right::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--black) 0%,transparent 50%);z-index:2; }
   .hero-img-bg { position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,0.1) 0%,transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(230,57,70,0.06) 0%,transparent 50%),linear-gradient(180deg,#100c02 0%,#080808 100%); }
   .flight-visual { position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center; }
@@ -91,11 +91,11 @@
   .plane-icon { font-size:24px;position:absolute;animation:orbit 8s linear infinite;z-index:4; }
   @keyframes orbit { from{transform:rotate(0deg) translateX(200px) rotate(90deg)}to{transform:rotate(360deg) translateX(200px) rotate(90deg)} }
   .floating-card { position:absolute;background:rgba(12,10,4,0.92);border:1px solid var(--border);border-radius:4px;padding:18px 22px;z-index:450;backdrop-filter:blur(20px); }
-  .floating-card:nth-child(5) { top:20%;right:5%;animation:float1 6s ease-in-out infinite; }
-  .floating-card:nth-child(6) { top:75%;right:16%;animation:float2 7s ease-in-out infinite; }
+  .floating-card:nth-child(5) { top:30%;right:8%;animation:float1 6s ease-in-out infinite; }
+  .floating-card:nth-child(6) { top:58%;right:16%;animation:float2 7s ease-in-out infinite; }
   @keyframes float1 { 0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)} }
   @keyframes float2 { 0%,100%{transform:translateY(0)}50%{transform:translateY(12px)} }
-  .fc-flag{font-size:22px;margin-bottom:6px;margin-top:48px}.fc-route{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--cream);margin-bottom:2px}.fc-sub{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}.fc-price{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);letter-spacing:-1px}.fc-badge{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:3px 10px;border-radius:2px;display:inline-block;margin-top:6px}
+  .fc-flag{font-size:22px;margin-bottom:6px;margin-top:56px}.fc-route{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--cream);margin-bottom:2px}.fc-sub{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}.fc-price{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);letter-spacing:-1px}.fc-badge{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:3px 10px;border-radius:2px;display:inline-block;margin-top:6px}
 
   /* TICKER */
   .ticker-wrap{overflow:hidden;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--obsidian)}
@@ -305,18 +305,18 @@
       <div class="plane-icon">✈</div>
     </div>
     <div class="floating-card">
-      <div class="fc-flag">🇸🇻</div>
-      <div class="fc-route">JFK → San Salvador</div>
-      <div class="fc-sub">Avianca · Nonstop · Mayo 2026</div>
-      <div class="fc-price">$280</div>
-      <div class="fc-badge">¡Precio Épico!</div>
-    </div>
-    <div class="floating-card">
       <div class="fc-flag">🇭🇳</div>
       <div class="fc-route">JFK → San Pedro Sula</div>
       <div class="fc-sub">JetBlue · Mayo 2026</div>
       <div class="fc-price">$336</div>
       <div class="fc-badge">Precio Bajo</div>
+    </div>
+    <div class="floating-card">
+      <div class="fc-flag">🇸🇻</div>
+      <div class="fc-route">JFK → San Salvador</div>
+      <div class="fc-sub">Avianca · Nonstop · Mayo 2026</div>
+      <div class="fc-price">$280</div>
+      <div class="fc-badge">¡Precio Épico!</div>
     </div>
   </div>
 </section>
@@ -522,10 +522,10 @@
     <div class="footer-logo">✈️ &nbsp;Vuela<span>Casa</span></div>
     <div class="footer-tagline">Vuela a casa por menos · Fly home for less</div>
   </div>
-  <p>© 2026 VuelaCasa · NYC · hola[at]vuelacasa.com</p>
+  <p>© 2026 VuelaCasa · NYC · <a href="/cdn-cgi/l/email-protection#eb8384878aab9d9e8e878a888a988ac5888486"><span class="__cf_email__" data-cfemail="b7dfd8dbd6f7c1c2d2dbd6d4d6c4d699d4d8da">[email&#160;protected]</span></a></p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CURSOR
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -581,7 +581,6 @@
   const FORMSPREE_ID = 'xgonknzo';
 
   function submitEmail(email, source){
-    
     fetch('https://formspree.io/f/'+FORMSPREE_ID,{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
