@@ -5,6 +5,12 @@ export default async function handler(req, res) {
   if (!email || !email.includes('@')) return res.status(400).json({ error: 'Invalid email' });
 
   try {
+    const payload = {
+      email,
+      listIds: [3],
+      updateEnabled: true
+    };
+
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -12,21 +18,19 @@ export default async function handler(req, res) {
         'Accept': 'application/json',
         'api-key': process.env.BREVO_API_KEY
       },
-      body: JSON.stringify({
-        email,
-        listIds: [3],
-        attributes: { SOURCE: source },
-        updateEnabled: true
-      })
+      body: JSON.stringify(payload)
     });
 
-    if (response.status === 201 || response.status === 204) {
+    const data = await response.json().catch(() => ({}));
+    console.log('Brevo status:', response.status, 'body:', JSON.stringify(data));
+
+    if (response.status === 201 || response.status === 204 || response.status === 200) {
       return res.status(200).json({ success: true });
     } else {
-      const data = await response.json();
-      return res.status(400).json({ error: data.message });
+      return res.status(200).json({ success: false, brevo: data });
     }
   } catch (err) {
-    return res.status(500).json({ error: 'Server error' });
+    console.error('Subscribe error:', err);
+    return res.status(200).json({ error: err.message });
   }
 }
