@@ -80,7 +80,7 @@
   .success-msg { display:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:12px 0; }
 
   /* HERO RIGHT */
-  .hero-right { position:relative;overflow:visible; }
+  .hero-right { position:relative;overflow:visible; min-height:100vh;  }
   .hero-right::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--black) 0%,transparent 50%);z-index:2; }
   .hero-img-bg { position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,0.1) 0%,transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(230,57,70,0.06) 0%,transparent 50%),linear-gradient(180deg,#100c02 0%,#080808 100%); }
   .flight-visual { position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center; }
@@ -91,7 +91,7 @@
   .plane-icon { font-size:24px;position:absolute;animation:orbit 8s linear infinite;z-index:4; }
   @keyframes orbit { from{transform:rotate(0deg) translateX(200px) rotate(90deg)}to{transform:rotate(360deg) translateX(200px) rotate(90deg)} }
   .floating-card { position:absolute;background:rgba(12,10,4,0.92);border:1px solid var(--border);border-radius:4px;padding:18px 22px;z-index:5;backdrop-filter:blur(20px); }
-  .floating-card:nth-child(5) { top:68%;right:8%;animation:float1 6s ease-in-out infinite; }
+  .floating-card:nth-child(5) { top:55%;right:8%;animation:float1 6s ease-in-out infinite; }
   .floating-card:nth-child(6) { bottom:22%;right:16%;animation:float2 7s ease-in-out infinite; }
   @keyframes float1 { 0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)} }
   @keyframes float2 { 0%,100%{transform:translateY(0)}50%{transform:translateY(12px)} }
