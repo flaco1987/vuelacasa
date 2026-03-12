@@ -522,14 +522,14 @@
     <div class="footer-logo">✈️ &nbsp;Vuela<span>Casa</span></div>
     <div class="footer-tagline">Vuela a casa por menos · Fly home for less</div>
   </div>
-  <div style="text-align:center;margin-top:12px">
-    <p style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:6px">Soporte · Support</p>
-    <a href="mailto:hola@vuelacasa.com" style="color:var(--gold);font-size:13px;text-decoration:none;letter-spacing:1px">hola@vuelacasa.com</a>
+  <div style="text-align:center;margin-top:8px">
+    <a href="/privacy-policy" style="color:rgba(255,255,255,0.25);text-decoration:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin:0 12px">Privacy Policy</a>
+    <a href="mailto:hola@vuelacasa.com" style="color:rgba(255,255,255,0.25);text-decoration:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin:0 12px">hola@vuelacasa.com</a>
   </div>
   <p>© 2026 VuelaCasa · NYC</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CURSOR
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -606,18 +606,4 @@
     const s=Math.floor((diff%6e4)/1e3);
     document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
     document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
-    document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
-  }
-  tick(); setInterval(tick,1000);
-
-  // ── SMOOTH SCROLL
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      const t=document.querySelector(a.getAttribute('href'));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
-    });
-  });
-</script>
-</body>
-</html>
+    
