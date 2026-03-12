@@ -585,11 +585,15 @@
   
   // ── BREVO API (via Vercel serverless function)
   function submitEmail(email, source){
+    console.log('Submitting email:', email, 'source:', source);
     fetch('/api/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({ email, source })
-    }).catch(err=>console.error('Subscribe error:',err));
+    })
+    .then(r=>r.json())
+    .then(d=>console.log('Brevo response:', JSON.stringify(d)))
+    .catch(err=>console.error('Subscribe error:',err));
   }
 
   // ── COUNTDOWN TO MAY 1 2026
