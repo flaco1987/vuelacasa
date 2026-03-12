@@ -582,17 +582,26 @@
     document.getElementById('waitlist-success').style.display='block';
   }
 
-  // ── FORMSPREE
-  // SETUP: Go to formspree.io → New Form → name "VuelaCasa Waitlist"
-  // Copy your form ID and replace xgonknzo below (e.g. "xpwzrqab")
-  const FORMSPREE_ID = 'xgonknzo';
+  
+  // ── BREVO API
+  const BREVO_KEY = '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';
+  const BREVO_LIST_ID = 3;
 
   function submitEmail(email, source){
-    fetch('https://formspree.io/f/'+FORMSPREE_ID,{
+    fetch('https://api.brevo.com/v3/contacts',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({email,source,_subject:'VuelaCasa Waitlist — '+source})
-    }).catch(err=>console.error('Formspree error:',err));
+      headers:{
+        'Content-Type':'application/json',
+        'Accept':'application/json',
+        'api-key': BREVO_KEY
+      },
+      body:JSON.stringify({
+        email: email,
+        listIds: [BREVO_LIST_ID],
+        attributes: { SOURCE: source },
+        updateEnabled: true
+      })
+    }).catch(err=>console.error('Brevo error:',err));
   }
 
   // ── COUNTDOWN TO MAY 1 2026
