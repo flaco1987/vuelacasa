@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to VuelaCasa ✈️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --gold:#c9a84c;
+      --black:#080808;
+      --cream:#f5f0e8;
+      --muted:rgba(255,255,255,0.38);
+      --border:rgba(201,168,76,0.15);
+    }
+    body{background:var(--black);color:var(--cream);font-family:'Outfit',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;text-align:center}
+    .container{max-width:560px;width:100%}
+    .plane{font-size:64px;margin-bottom:32px;animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,56px);font-weight:300;line-height:1.1;margin-bottom:16px}
+    h1 em{font-style:italic;color:var(--gold)}
+    .sub{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:48px;font-weight:300}
+    .card{border:1px solid var(--border);padding:40px;margin-bottom:32px;background:linear-gradient(135deg,rgba(201,168,76,0.03) 0%,transparent 60%)}
+    .step{display:flex;align-items:flex-start;gap:16px;text-align:left;margin-bottom:24px}
+    .step:last-child{margin-bottom:0}
+    .step-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);line-height:1;flex-shrink:0;width:32px}
+    .step-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;font-weight:300}
+    .step-text strong{color:var(--cream);font-weight:600}
+    .btn{display:inline-block;background:var(--gold);color:var(--black);padding:18px 40px;font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:700;font-family:'Outfit',sans-serif;text-decoration:none;border-radius:2px;transition:background 0.3s}
+    .btn:hover{background:#d4b05a}
+    .footer-note{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.18);margin-top:32px}
+    .divider{width:40px;height:1px;background:var(--gold);margin:32px auto;opacity:0.4}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="plane">✈️</div>
+    <h1>¡Bienvenido a<br><em>VuelaCasa!</em></h1>
+    <p class="sub">
+      You're now a VuelaCasa member. We track flights to Latin America every day and alert you when prices drop.<br><br>
+      <span style="color:rgba(255,255,255,0.2);font-size:11px;letter-spacing:1px">Ya eres parte del club. Rastreamos vuelos a Latinoamérica cada día y te avisamos cuando los precios bajan.</span>
+    </p>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Check your inbox</strong><br>A welcome email is on its way to you from hola@vuelacasa.com. Check your spam folder if you don't see it in 5 minutes.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Tell us your 2 routes</strong><br>Reply to the welcome email with your home airport and your top 2 destinations. We'll configure your alerts right away.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Wait for your first deal</strong><br>Our engine scans 20 Latin American routes every morning. When we find a deal on your routes, you'll be the first to know.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <a href="/" class="btn">← Volver a VuelaCasa</a>
+    <p class="footer-note" style="margin-top:24px">Questions? hola@vuelacasa.com · Manage your subscription at billing.stripe.com</p>
+  </div>
+</body>
+</html>
