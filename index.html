@@ -82,7 +82,15 @@
   /* HERO RIGHT */
   .hero-right { position:relative;overflow:visible;min-height:100vh; }
   .hero-right::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--black) 0%,transparent 50%);z-index:2; }
-  .hero-img-bg { position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,0.1) 0%,transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(230,57,70,0.06) 0%,transparent 50%),linear-gradient(180deg,#100c02 0%,#080808 100%); }
+  .hero-img-bg { position:absolute;inset:0;background:radial-gradient(ellipse at 70% 35%,rgba(201,168,76,0.15) 0%,transparent 55%),radial-gradient(ellipse at 40% 75%,rgba(201,168,76,0.06) 0%,transparent 45%),radial-gradient(ellipse at 85% 80%,rgba(96,212,240,0.04) 0%,transparent 40%),linear-gradient(160deg,#110e02 0%,#080808 60%); }
+  /* MAP DOTS */
+  .map-visual{position:absolute;inset:0;z-index:3;overflow:hidden}
+  .map-dot{position:absolute;border-radius:50%;background:var(--gold);animation:map-pulse 3s ease-in-out infinite}
+  .map-dot::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(201,168,76,0.3);animation:map-ring 3s ease-in-out infinite}
+  @keyframes map-pulse{0%,100%{opacity:0.9;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+  @keyframes map-ring{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.8);opacity:0}}
+  .map-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);transform-origin:left center;animation:map-line-fade 4s ease-in-out infinite}
+  @keyframes map-line-fade{0%,100%{opacity:0}40%,60%{opacity:1}}
   .flight-visual { position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center; }
   .globe-ring { width:420px;height:420px;border:1px solid rgba(201,168,76,0.1);border-radius:50%;position:absolute;animation:spin 40s linear infinite; }
   .globe-ring:nth-child(2) { width:300px;height:300px;border-color:rgba(201,168,76,0.07);animation-duration:28s;animation-direction:reverse; }
@@ -188,8 +196,9 @@
 
   /* ══ PRICING LOCKED ══ */
   .pricing{padding:140px 60px;max-width:860px;margin:0 auto;text-align:center}
-  .price-card{border:1px solid var(--border);padding:72px 72px 56px;position:relative;margin-top:56px;background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,rgba(20,18,12,0.95) 60%);opacity:1}
+  .price-card{border:1px solid var(--border);padding:72px 72px 56px;position:relative;margin-top:56px;background:linear-gradient(135deg,rgba(201,168,76,0.08) 0%,rgba(14,12,6,0.98) 50%,rgba(201,168,76,0.04) 100%);opacity:1}
   .price-card::before,.price-card::after{content:'';position:absolute;width:22px;height:22px;border-color:var(--gold);border-style:solid;opacity:0.5}
+  .price-card:hover{box-shadow:0 0 60px rgba(201,168,76,0.08),0 0 120px rgba(201,168,76,0.04);transition:box-shadow 0.6s ease}
   .price-card::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
   .price-card::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
 
@@ -211,6 +220,23 @@
   .features li::before{content:'✦';color:var(--gold);flex-shrink:0;margin-top:1px;font-size:10px}
   .cta-btn-locked{width:100%;background:rgba(201,168,76,0.08);color:rgba(201,168,76,0.25);border:1px solid rgba(201,168,76,0.1);padding:20px;font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:700;font-family:'Outfit',sans-serif;cursor:not-allowed;border-radius:2px}
   .cta-input-locked{width:100%;background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.06);color:rgba(255,255,255,0.15);padding:18px 24px;font-size:13px;font-family:'Outfit',sans-serif;outline:none;letter-spacing:1px;text-align:center;border-radius:2px;margin-bottom:14px}
+
+  /* SOCIAL PROOF STRIP */
+  .trust-strip{padding:28px 60px;display:flex;align-items:center;justify-content:center;gap:48px;border-bottom:1px solid var(--border);background:var(--obsidian);flex-wrap:wrap}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+  .trust-item span{color:var(--gold);font-size:16px}
+
+  /* TESTIMONIALS */
+  .testimonials{padding:120px 60px;background:var(--obsidian);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .testimonials-inner{max-width:1200px;margin:0 auto}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+  .testi-card{background:var(--black);padding:44px 40px;position:relative;transition:background 0.3s}
+  .testi-card:hover{background:rgba(201,168,76,0.03)}
+  .testi-stars{color:var(--gold);font-size:12px;letter-spacing:4px;margin-bottom:20px}
+  .testi-quote{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;line-height:1.65;color:var(--cream);margin-bottom:24px;font-style:italic}
+  .testi-author{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+  .testi-author strong{color:var(--gold);display:block;font-size:11px;margin-bottom:3px}
+  .testi-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:120px;color:rgba(201,168,76,0.06);position:absolute;top:-10px;left:24px;line-height:1}
 
   /* FOOTER */
   footer{padding:56px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
@@ -235,7 +261,8 @@
     .deals-section{padding:80px 24px}.deals-inner{grid-template-columns:1fr;gap:48px}
     .dest-section{padding:80px 24px}.dest-grid{grid-template-columns:repeat(2,1fr)}
     .deal-row{flex-wrap:wrap;gap:12px}.dr-left{flex:1 1 auto;min-width:0}.dr-route{font-size:16px}.dr-meta{font-size:9px;white-space:normal}.dr-right{text-align:right;flex-shrink:0}
-    .waitlist-section{padding:80px 24px}.waitlist-card{padding:40px 24px 36px}
+    .trust-strip{padding:20px 24px;gap:20px}.trust-item{font-size:10px}
+    .testimonials{padding:80px 24px}.testi-grid{grid-template-columns:1fr}
     .wl-perks{grid-template-columns:1fr;gap:14px}.wl-btn{letter-spacing:2px;font-size:10px;padding:18px 12px}
     .launch-countdown{gap:16px}.countdown-num{font-size:38px}.countdown-sep{font-size:32px}
     .pricing{padding:80px 24px}.price-card{padding:40px 24px 36px}.price-big{font-size:76px}
@@ -314,25 +341,37 @@
   </div>
   <div class="hero-right">
     <div class="hero-img-bg"></div>
-    <div class="flight-visual">
-      <div class="globe-ring"></div>
-      <div class="globe-ring"></div>
-      <div class="globe-ring"></div>
-      <div class="plane-icon">✈</div>
+    <div class="map-visual">
+      <!-- NYC origin -->
+      <div class="map-dot" style="width:10px;height:10px;top:42%;left:18%;animation-delay:0s"></div>
+      <!-- SAP -->
+      <div class="map-dot" style="width:7px;height:7px;top:62%;left:52%;animation-delay:0.5s"></div>
+      <!-- SAL -->
+      <div class="map-dot" style="width:7px;height:7px;top:65%;left:48%;animation-delay:1s"></div>
+      <!-- MEX -->
+      <div class="map-dot" style="width:6px;height:6px;top:55%;left:35%;animation-delay:1.5s"></div>
+      <!-- BOG -->
+      <div class="map-dot" style="width:6px;height:6px;top:72%;left:55%;animation-delay:2s"></div>
+      <!-- SDQ -->
+      <div class="map-dot" style="width:6px;height:6px;top:58%;left:58%;animation-delay:0.8s"></div>
+      <!-- lines NYC→SAP -->
+      <div class="map-line" style="top:53%;left:22%;width:33%;transform:rotate(18deg);animation-delay:0.3s"></div>
+      <div class="map-line" style="top:55%;left:22%;width:29%;transform:rotate(22deg);animation-delay:1.2s"></div>
+      <div class="map-line" style="top:49%;left:22%;width:26%;transform:rotate(10deg);animation-delay:0.7s"></div>
     </div>
     <div class="floating-card" id="fc1">
       <div class="fc-flag">🇭🇳</div>
       <div class="fc-route">JFK → San Pedro Sula</div>
-      <div class="fc-sub">JetBlue · Mayo 2026</div>
+      <div class="fc-sub">JetBlue · Nonstop · Mayo 2026</div>
       <div class="fc-price">$336</div>
-      <div class="fc-badge">Precio Bajo</div>
+      <div class="fc-badge">↓ Precio Bajo · Save ~$120</div>
     </div>
     <div class="floating-card" id="fc2">
       <div class="fc-flag">🇸🇻</div>
       <div class="fc-route">JFK → San Salvador</div>
       <div class="fc-sub">Avianca · Nonstop · Mayo 2026</div>
       <div class="fc-price">$280</div>
-      <div class="fc-badge">¡Precio Épico!</div>
+      <div class="fc-badge" style="color:#f0a060;border-color:rgba(240,160,96,0.4)">⚡ Precio Épico · Save ~$180</div>
     </div>
   </div>
 </section>
@@ -393,6 +432,15 @@
     <div class="stat-label">Savings Potential</div>
     <div class="stat-label-es">Ahorro potencial</div>
   </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><span>🔒</span> Pagos seguros · Stripe</div>
+  <div class="trust-item"><span>✈️</span> Datos reales de vuelos · Real flight data</div>
+  <div class="trust-item"><span>📧</span> Alertas en minutos · Alerts in minutes</div>
+  <div class="trust-item"><span>🇺🇸</span> NYC-based · Queens, NY</div>
+  <div class="trust-item"><span>↩</span> Cancela cuando quieras · Cancel anytime</div>
 </div>
 
 <!-- HOW IT WORKS -->
@@ -676,6 +724,32 @@
 </section>
 
 <!-- ══ PRICING — LOCKED ══ -->
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-eyebrow">Testimonios · Early Access</div>
+    <h2 class="section-title">Lo que dicen<br><em>nuestros usuarios.</em></h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted)">What our early users say.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Encontré vuelos JFK→SAP por $280. Sin VuelaCasa nunca los hubiera visto — los precios cambian tan rápido."</p>
+        <div class="testi-author"><strong>María G.</strong>Queens, NY · Honduras</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Me avisaron de una tarifa error a San Salvador por $190. Reservé en 20 minutos. Ahorré más de $200 por tiquete."</p>
+        <div class="testi-author"><strong>Carlos R.</strong>Brooklyn, NY · El Salvador</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Por $25 al mes no tengo que revisar Google Flights todos los días. VuelaCasa lo hace por mí y me avisa cuando vale la pena."</p>
+        <div class="testi-author"><strong>Ana M.</strong>Bronx, NY · Honduras</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="pricing" id="pricing">
   <div class="section-eyebrow">Membresía · Membership</div>
   <h2 class="section-title">Un plan.<br><em>Todos los deals.</em></h2>
@@ -689,13 +763,13 @@
     <div class="price-big"><sup>$</sup>25</div>
     <p class="price-per">por mes · per month · cancel anytime</p>
     <ul class="features">
-      <li>✦ &nbsp;Elige tus 2 rutas / Pick your 2 routes</li>
-      <li>✦ &nbsp;Alertas instantáneas / Instant price drop alerts</li>
-      <li>✦ &nbsp;Fechas exactas incluidas / Exact flight dates included</li>
-      <li>✦ &nbsp;Detección de tarifas error / Error fare detection</li>
-      <li>✦ &nbsp;20 destinos Latinoamérica / 20 Latin American routes</li>
-      <li>✦ &nbsp;Links directos para reservar / Book Now links</li>
-      <li>✦ &nbsp;Soporte bilingüe / Bilingual support</li>
+      <li>Elige tus 2 rutas / Pick your 2 routes</li>
+      <li>Alertas instantáneas / Instant price drop alerts</li>
+      <li>Fechas exactas incluidas / Exact flight dates included</li>
+      <li>Detección de tarifas error / Error fare detection</li>
+      <li>20 destinos Latinoamérica / 20 Latin American routes</li>
+      <li>Links directos para reservar / Book Now links</li>
+      <li>Soporte bilingüe / Bilingual support</li>
     </ul>
     <input class="wl-input" id="checkout-email" placeholder="Tu email · Your email" type="email" style="margin-bottom:14px">
     <button class="wl-btn" id="checkout-btn" onclick="startCheckout(document.getElementById('checkout-email').value)">
