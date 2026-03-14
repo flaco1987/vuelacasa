@@ -565,8 +565,8 @@
         <li data-en="Bilingual support" data-es="Soporte bilingüe">Bilingual support</li>
         <li data-en="Cancel anytime" data-es="Cancela cuando quieras">Cancel anytime</li>
       </ul>
-      <input class="price-input" type="email" placeholder="your@email.com">
-      <button class="price-btn" data-en="Subscribe Now" data-es="Suscríbete Ahora">Subscribe Now</button>
+      <input class="price-input" id="checkout-email" type="email" placeholder="your@email.com">
+      <button class="price-btn" id="checkout-btn" onclick="startCheckout(document.getElementById('checkout-email').value)" data-en="Subscribe Now" data-es="Suscríbete Ahora">Subscribe Now</button>
       <p class="price-secure" data-en="🔒 Secure payment · Powered by Stripe · Cancel anytime" data-es="🔒 Pago seguro · Powered by Stripe · Cancela cuando quieras">🔒 Secure payment · Powered by Stripe · Cancel anytime</p>
     </div>
   </div>
@@ -587,6 +587,29 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // STRIPE CHECKOUT
+  async function startCheckout(email){
+    const btn = document.getElementById('checkout-btn');
+    try {
+      if(btn){ btn.textContent='Loading...'; btn.disabled=true; }
+      const res = await fetch('/api/checkout',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ email: email||'' })
+      });
+      const data = await res.json();
+      if(data.url){ window.location.href = data.url; }
+      else {
+        if(btn){ btn.textContent='Subscribe Now'; btn.disabled=false; }
+        alert('Something went wrong. Please try again.');
+      }
+    } catch(err){
+      console.error('Checkout error:',err);
+      if(btn){ btn.textContent='Subscribe Now'; btn.disabled=false; }
+      alert('Something went wrong. Please try again.');
+    }
+  }
+
   let curLang = 'en';
   function toggleLang(e){ e.stopPropagation(); document.getElementById('langDD').classList.toggle('open'); }
   function setLang(lang, flag, label, el){
