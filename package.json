@@ -1,0 +1,9 @@
+{
+  "name": "vuelacasa",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "stripe": "^14.0.0",
+    "micro": "^10.0.1"
+  }
+}
